@@ -1,8 +1,9 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/haiku/:date",
-      "destination": "https://daily-haiku-backend-production.up.railway.app/haiku/:date"
+      "destination": "https://daily-haiku-backend-production.up.railway.app/haiku/:date",
+      "permanent": false
     }
   ]
 }

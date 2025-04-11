@@ -54,40 +54,39 @@ const Index: React.FC = () => {
     <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
       
-      <main className="flex-1 px-4 sm:px-6 md:px-12 lg:px-24 pt-36 sm:pt-40 pb-20 flex flex-col items-center justify-center">
+      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-20 xl:px-24 py-12 sm:py-20">
+          <div className="w-full max-w-6xl flex flex-col items-center justify-center space-y-16">
+            
+            {/* Contenido principal del Haiku */}
+            <div className="w-full flex flex-col items-center">
+              <div className="w-full flex justify-center">
+                <HaikuDisplay 
+                  text={haiku.text}
+                  author={haiku.author}
+                  season={haiku.season}
+                  year={haiku.year}
+                  image={haiku.image}
+                  keywords={haiku.keywords}
+                />
+              </div>
+            </div>
 
+            {/* CTA de soporte */}
+            <div className="w-full flex flex-col items-center">
+              <a
+                href="https://buymeacoffee.com/tomasmorales"
+                target="_blank"
+                className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
+              >
+                Support the project
+              </a>
 
-        <div className="w-full flex flex-col items-center">
-
-          
-          <div className="w-full flex justify-center">
-            <HaikuDisplay 
-              text={haiku.text}
-              author={haiku.author}
-              season={haiku.season}
-              year={haiku.year}
-              image={haiku.image}
-              keywords={haiku.keywords}
-            />
+              <p className="text-sm mt-4 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
+                If one of these haikus moved you,<br />consider supporting the project here.
+              </p>
+            </div>
           </div>
-        </div>
-        
-        <div className="mt-12 sm:mt-20 mb-16 sm:mb-20 w-full flex flex-col items-center max-w-md mx-auto">
-        <a
-          href="https://buymeacoffee.com/tomasmorales"
-          target="_blank"
-          className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
-        >
-          Support the project
-        </a>
-
-          <p className="text-sm mt-4 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
-          If one of these haikus moved you,<br />consider supporting the project here.
-         </p>
-
-        </div>
-
-      </main>
+        </main>
     </div>
   );
 };

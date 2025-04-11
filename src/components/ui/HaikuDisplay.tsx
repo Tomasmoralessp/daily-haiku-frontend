@@ -39,17 +39,18 @@ const HaikuDisplay: React.FC = () => {
 
   const handleShare = () => {
     const today = new Date().toISOString().split("T")[0];
-    const url = `https://dailyhaiku.app/haiku/${today}`;
+    const shareUrl = `https://daily-haiku-backend-production.up.railway.app/haiku/${today}`; // OG-ready
+  
     if (navigator.share) {
       navigator
         .share({
           title: "🌸 Daily Haiku",
           text: "Enjoy today's haiku",
-          url,
+          url: shareUrl,
         })
         .catch((err) => console.error("Error sharing:", err));
     } else {
-      navigator.clipboard.writeText(url);
+      navigator.clipboard.writeText(shareUrl);
       alert("Link copied to clipboard!");
     }
   };

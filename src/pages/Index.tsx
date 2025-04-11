@@ -63,13 +63,6 @@ const Index: React.FC = () => {
           />
         </div>
       </main>
-
-      {/* Footer al final, fuera del main, sin fijarlo */}
-      <footer className="text-center py-4 px-4">
-        <p className="text-sm text-gray-500 leading-relaxed">
-          If one of these haikus moved you, consider supporting the project.
-        </p>
-      </footer>
     </div>
   );
 };

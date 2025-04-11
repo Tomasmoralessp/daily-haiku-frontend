@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import Header from "../components/layout/Header";
 import Counter from "../components/ui/Counter";
 import HaikuDisplay from "../components/ui/HaikuDisplay";
 
-// Sample haiku data - in a real app, this would come from an API
+// Sample haiku data
 const sampleHaikus = [
   {
     text: ["An old silent pond", "A frog jumps into the pond—", "Splash! Silence again."],
@@ -41,10 +40,8 @@ const sampleHaikus = [
 ];
 
 const Index: React.FC = () => {
-  // In a real app, we would fetch today's haiku from an API
   const [haiku, setHaiku] = useState(sampleHaikus[0]);
-  
-  // Simulate getting a random haiku for demo purposes
+
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * sampleHaikus.length);
     setHaiku(sampleHaikus[randomIndex]);
@@ -52,30 +49,28 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
-  <Header />
+      <Header />
 
-  <main className="flex-1 flex flex-col pt-10 px-4 sm:px-6 lg:px-8">
-    {/* Haiku Display */}
-    <div className="flex-1 flex items-center justify-center">
-      <HaikuDisplay
-        text={haiku.text}
-        author={haiku.author}
-        season={haiku.season}
-        year={haiku.year}
-        image={haiku.image}
-        keywords={haiku.keywords}
-      />
+      <main className="flex-1 flex flex-col pt-10 px-4 sm:px-6 lg:px-8">
+        <div className="flex-1 flex items-center justify-center">
+          <HaikuDisplay
+            text={haiku.text}
+            author={haiku.author}
+            season={haiku.season}
+            year={haiku.year}
+            image={haiku.image}
+            keywords={haiku.keywords}
+          />
+        </div>
+      </main>
+
+      {/* Footer al final, fuera del main, sin fijarlo */}
+      <footer className="text-center py-4 px-4">
+        <p className="text-sm text-gray-500 leading-relaxed">
+          If one of these haikus moved you, consider supporting the project.
+        </p>
+      </footer>
     </div>
-  </main>
-
-  {/* Support CTA - Footer fijo */}
-  <footer className="text-center py-4 px-4">
-    <p className="text-sm text-gray-500 leading-relaxed">
-      If one of these haikus moved you, consider supporting the project.
-    </p>
-  </footer>
-</div>
-
   );
 };
 

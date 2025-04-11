@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./button";
-import { Share2 } from "lucide-react";
+import { Share2, Heart } from "lucide-react";
 
 interface Haiku {
   id: number;
@@ -18,6 +18,7 @@ const HaikuDisplay: React.FC = () => {
   const [data, setData] = useState<Haiku | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isHeartAnimating, setIsHeartAnimating] = useState(false);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/daily_haiku`)
@@ -43,7 +44,7 @@ const HaikuDisplay: React.FC = () => {
       navigator
         .share({
           title: "🌸 Daily Haiku",
-          text: "Enjoy today’s haiku",
+          text: "Enjoy today's haiku",
           url,
         })
         .catch((err) => console.error("Error sharing:", err));
@@ -51,6 +52,12 @@ const HaikuDisplay: React.FC = () => {
       navigator.clipboard.writeText(url);
       alert("Link copied to clipboard!");
     }
+  };
+
+  const handleSupportClick = () => {
+    setIsHeartAnimating(true);
+    setTimeout(() => setIsHeartAnimating(false), 1000);
+    window.open("https://buymeacoffee.com/tomasmorales", "_blank");
   };
 
   if (loading) {
@@ -106,7 +113,7 @@ const HaikuDisplay: React.FC = () => {
         
         {/* Haiku Text después en móvil */}
         <div className="text-center px-4">
-          <p className="text-2xl font-light leading-relaxed mb-4">{data.haiku}</p>
+          <p className="text-2xl font-playfair leading-relaxed mb-4">{data.haiku}</p>
           <p className="text-lg uppercase font-medium">{data.author}</p>
           <p className="text-gray-400 uppercase text-sm mb-4">{data.season}</p>
           
@@ -124,16 +131,37 @@ const HaikuDisplay: React.FC = () => {
             </div>
           )}
           
-          {/* Share button */}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleShare}
-            className="mt-2 border-gray-700 hover:bg-gray-800"
-          >
-            <Share2 className="mr-1 h-4 w-4" />
-            Share
-          </Button>
+          {/* Botones en fila (Share y Support) */}
+          <div className="flex justify-center gap-3 mt-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleShare}
+              className="border-gray-700 hover:bg-gray-800"
+            >
+              <Share2 className="mr-1 h-4 w-4" />
+              Share
+            </Button>
+            
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleSupportClick}
+              className={`relative overflow-hidden border-gray-700 hover:border-red-500 hover:text-red-500 transition-colors duration-300 ${
+                isHeartAnimating ? "border-red-500 text-red-500" : ""
+              }`}
+            >
+              <Heart 
+                className={`mr-1 h-4 w-4 transition-transform duration-500 ${
+                  isHeartAnimating ? "scale-150 text-red-500" : ""
+                }`} 
+              />
+              Support
+              {isHeartAnimating && (
+                <span className="absolute inset-0 bg-red-500/10 animate-pulse" />
+              )}
+            </Button>
+          </div>
         </div>
       </div>
       
@@ -154,12 +182,12 @@ const HaikuDisplay: React.FC = () => {
         {/* Texto y metadatos */}
         <div className="w-3/5 flex flex-col items-start justify-center">
           <div className="mb-6 max-w-lg">
-            <p className="text-3xl lg:text-4xl font-light leading-relaxed mb-6">{data.haiku}</p>
+            <p className="text-3xl lg:text-4xl font-playfair leading-relaxed mb-6">{data.haiku}</p>
           </div>
 
           <div>
-            <p className="uppercase tracking-wide font-medium text-lg">{data.author}</p>
-            <p className="uppercase tracking-wide text-gray-400 mb-4">{data.season}</p>
+            <p className="uppercase tracking-wide font-inter text-lg">{data.author}</p>
+            <p className="uppercase tracking-wide text-gray-400 mb-4">#{data.season}</p>
 
             {keywordsArray.length > 0 && (
               <div className="mb-6">
@@ -176,15 +204,37 @@ const HaikuDisplay: React.FC = () => {
               </div>
             )}
 
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleShare}
-              className="border-gray-700 hover:bg-gray-800"
-            >
-              <Share2 className="mr-1 h-4 w-4" />
-              Share
-            </Button>
+            {/* Botones en fila para desktop */}
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleShare}
+                className="border-gray-700 hover:bg-gray-800"
+              >
+                <Share2 className="mr-1 h-4 w-4" />
+                Share
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleSupportClick}
+                className={`relative overflow-hidden border-gray-700 hover:border-red-500 hover:text-red-500 transition-colors duration-300 ${
+                  isHeartAnimating ? "border-red-500 text-red-500" : ""
+                }`}
+              >
+                <Heart 
+                  className={`mr-1 h-4 w-4 transition-transform duration-500 ${
+                    isHeartAnimating ? "scale-150 text-red-500" : ""
+                  }`} 
+                />
+                Support
+                {isHeartAnimating && (
+                  <span className="absolute inset-0 bg-red-500/10 animate-pulse" />
+                )}
+              </Button>
+            </div>
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ const Index: React.FC = () => {
     <div className="h-screen flex flex-col bg-black text-white overflow-hidden">
       <Header />
 
-      <main className="flex-1 flex flex-col pt-16 md:pt-20 px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 flex flex-col pt-10 md:pt-10 px-4 sm:px-6 lg:px-8">
         {/* Haiku Display */}
         <div className="flex-1 flex items-center justify-center">
           <HaikuDisplay
@@ -68,17 +68,9 @@ const Index: React.FC = () => {
         </div>
 
         {/* Support CTA */}
-        <div className="mb-6 flex flex-col items-center">
-          <a
-            href="https://buymeacoffee.com/tomasmorales"
-            target="_blank"
-            className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
-          >
-            Support the project
-          </a>
-
-          <p className="text-sm mt-2 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
-            If one of these haikus moved you, consider supporting the project here.
+        <div className="mb-6 text-center">
+          <p className="text-sm text-gray-500 leading-relaxed">
+            If one of these haikus moved you, consider supporting the project.
           </p>
         </div>
       </main>

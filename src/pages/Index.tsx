@@ -51,30 +51,31 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col bg-black text-white overflow-hidden">
-      <Header />
+    <div className="min-h-screen flex flex-col bg-black text-white">
+  <Header />
 
-      <main className="flex-1 flex flex-col pt-10 md:pt-10 px-4 sm:px-6 lg:px-8">
-        {/* Haiku Display */}
-        <div className="flex-1 flex items-center justify-center">
-          <HaikuDisplay
-            text={haiku.text}
-            author={haiku.author}
-            season={haiku.season}
-            year={haiku.year}
-            image={haiku.image}
-            keywords={haiku.keywords}
-          />
-        </div>
-
-        {/* Support CTA */}
-        <div className="mb-6 text-center">
-          <p className="text-sm text-gray-500 leading-relaxed">
-            If one of these haikus moved you, consider supporting the project.
-          </p>
-        </div>
-      </main>
+  <main className="flex-1 flex flex-col pt-10 px-4 sm:px-6 lg:px-8">
+    {/* Haiku Display */}
+    <div className="flex-1 flex items-center justify-center">
+      <HaikuDisplay
+        text={haiku.text}
+        author={haiku.author}
+        season={haiku.season}
+        year={haiku.year}
+        image={haiku.image}
+        keywords={haiku.keywords}
+      />
     </div>
+  </main>
+
+  {/* Support CTA - Footer fijo */}
+  <footer className="text-center py-4 px-4">
+    <p className="text-sm text-gray-500 leading-relaxed">
+      If one of these haikus moved you, consider supporting the project.
+    </p>
+  </footer>
+</div>
+
   );
 };
 

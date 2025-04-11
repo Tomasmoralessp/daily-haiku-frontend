@@ -51,41 +51,38 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="min-h-screen bg-black text-white flex flex-col overflow-hidden">
       <Header />
-      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 bg-black text-white">
-          <div className="w-full max-w-6xl flex flex-col items-center space-y-12 pt-20">
+      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 min-h-[100dvh] bg-black text-white">
+        <div className="w-full max-w-6xl flex flex-col items-center space-y-8 sm:space-y-12 pt-24 sm:pt-28 pb-10 sm:pb-16">
 
-            {/* Haiku Display */}
-            <div className="w-full flex justify-center">
-              <HaikuDisplay 
-                text={haiku.text}
-                author={haiku.author}
-                season={haiku.season}
-                year={haiku.year}
-                image={haiku.image}
-                keywords={haiku.keywords}
-              />
-            </div>
-
-            {/* CTA */}
-            <div className="flex flex-col items-center">
-              <a
-                href="https://buymeacoffee.com/tomasmorales"
-                target="_blank"
-                className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
-              >
-                Support the project
-              </a>
-              <p className="text-sm mt-3 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
-                If one of these haikus moved you,<br />consider supporting the project here.
-              </p>
-            </div>
-
+          {/* Haiku */}
+          <div className="w-full flex justify-center">
+            <HaikuDisplay 
+              text={haiku.text}
+              author={haiku.author}
+              season={haiku.season}
+              year={haiku.year}
+              image={haiku.image}
+              keywords={haiku.keywords}
+            />
           </div>
-        </main>
 
-
+          {/* CTA */}
+          <div className="flex flex-col items-center">
+            <a
+              href="https://buymeacoffee.com/tomasmorales"
+              target="_blank"
+              className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
+            >
+              Support the project
+            </a>
+            <p className="text-sm mt-3 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
+              If one of these haikus moved you,<br />consider supporting the project here.
+            </p>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

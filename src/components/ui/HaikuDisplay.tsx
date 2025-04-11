@@ -10,7 +10,7 @@ interface Haiku {
   title?: string | null;
   notes?: string | null;
   source?: string;
-  keywords?: string | string[] | null; // 🔥 Puede ser un array, un string JSON o null
+  keywords?: string | string[] | null;
   image_url: string;
 }
 
@@ -22,13 +22,10 @@ const HaikuDisplay: React.FC = () => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/daily_haiku`)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error al obtener el haiku");
-        }
+        if (!response.ok) throw new Error("Error al obtener el haiku");
         return response.json();
       })
       .then((data) => {
-        console.log("Datos recibidos:", data); // 🔍 Verifica qué devuelve la API
         setData(data);
         setLoading(false);
       })
@@ -42,7 +39,6 @@ const HaikuDisplay: React.FC = () => {
   const handleShare = () => {
     const today = new Date().toISOString().split("T")[0];
     const url = `https://dailyhaiku.app/haiku/${today}`;
-  
     if (navigator.share) {
       navigator
         .share({
@@ -56,9 +52,7 @@ const HaikuDisplay: React.FC = () => {
       alert("Link copied to clipboard!");
     }
   };
-  
 
-  // 📌 Manejo de estados para evitar pantalla negra
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -83,11 +77,10 @@ const HaikuDisplay: React.FC = () => {
     );
   }
 
-  // 🔥 Transformamos `keywords` en array ANTES de renderizar
   let keywordsArray: string[] = [];
   if (typeof data.keywords === "string") {
     try {
-      keywordsArray = JSON.parse(data.keywords); // 🔥 Convertimos el string JSON en un array
+      keywordsArray = JSON.parse(data.keywords);
     } catch (error) {
       console.error("Error al parsear keywords:", error);
     }
@@ -96,41 +89,85 @@ const HaikuDisplay: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-5xl mx-auto">
-      <div className="flex flex-col md:flex-row items-center justify-center w-full gap-6 md:gap-12 lg:gap-16 px-4">
-        {/* Imagen del Haiku */}
-        <div className="w-full md:w-2/5 flex flex-col items-center justify-center order-1">
-          <div className="relative w-full h-64 sm:h-80 md:h-96 mb-6 md:mb-0">
+    <div className="w-full max-w-5xl mx-auto">
+      {/* Mobile layout */}
+      <div className="md:hidden flex flex-col space-y-6">
+        {/* Haiku Image primero en móvil */}
+        <div className="px-4">
+          <div className="relative w-full aspect-square max-h-60 rounded-2xl overflow-hidden">
             <img
-              src={data.image_url} 
+              src={data.image_url}
               alt="Imagen del haiku"
-              className="w-full h-[180px] sm:h-80 md:h-96 object-cover rounded-2xl shadow-lg"
-              style={{ objectPosition: "center" }}
+              className="w-full h-full object-cover rounded-2xl shadow-lg"
+            />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent to-black/10 pointer-events-none" />
+          </div>
+        </div>
+        
+        {/* Haiku Text después en móvil */}
+        <div className="text-center px-4">
+          <p className="text-2xl font-light leading-relaxed mb-4">{data.haiku}</p>
+          <p className="text-lg uppercase font-medium">{data.author}</p>
+          <p className="text-gray-400 uppercase text-sm mb-4">{data.season}</p>
+          
+          {/* Keywords */}
+          {keywordsArray.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-2 mb-4">
+              {keywordsArray.map((keyword, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 text-xs bg-gray-800 text-gray-300 rounded-full"
+                >
+                  #{keyword}
+                </span>
+              ))}
+            </div>
+          )}
+          
+          {/* Share button */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleShare}
+            className="mt-2 border-gray-700 hover:bg-gray-800"
+          >
+            <Share2 className="mr-1 h-4 w-4" />
+            Share
+          </Button>
+        </div>
+      </div>
+      
+      {/* Desktop layout */}
+      <div className="hidden md:flex md:flex-row items-center justify-center w-full gap-12 lg:gap-16 px-4">
+        {/* Image */}
+        <div className="w-2/5 flex flex-col items-center justify-center">
+          <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
+            <img
+              src={data.image_url}
+              alt="Imagen del haiku"
+              className="w-full h-full object-cover rounded-2xl shadow-lg"
             />
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent to-black/10 pointer-events-none" />
           </div>
         </div>
 
-        {/* Texto y Metadatos del Haiku */}
-        <div className="w-full md:w-3/5 flex flex-col items-center md:items-start justify-center order-2">
-          <div className="mb-6 md:mb-8 max-w-lg">
-            <p className="haiku-text mb-6 font-light">{data.haiku}</p> 
+        {/* Texto y metadatos */}
+        <div className="w-3/5 flex flex-col items-start justify-center">
+          <div className="mb-6 max-w-lg">
+            <p className="text-3xl lg:text-4xl font-light leading-relaxed mb-6">{data.haiku}</p>
           </div>
 
-          <div className="w-full">
-            <p className="haiku-metadata mb-1 text-gray-300">{data.author}</p>
-            <p className="haiku-metadata mb-1 text-gray-400">{data.season}</p>
+          <div>
+            <p className="uppercase tracking-wide font-medium text-lg">{data.author}</p>
+            <p className="uppercase tracking-wide text-gray-400 mb-4">{data.season}</p>
 
-  
-
-            {/* 🔥 Nueva sección para mostrar las keywords */}
             {keywordsArray.length > 0 && (
-              <div className="mb-4">
+              <div className="mb-6">
                 <div className="flex flex-wrap gap-2">
                   {keywordsArray.map((keyword, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 text-xs bg-gray-800 text-gray-300 rounded-full"
+                      className="px-3 py-1 text-xs bg-gray-800 text-gray-300 rounded-full"
                     >
                       #{keyword}
                     </span>
@@ -139,12 +176,11 @@ const HaikuDisplay: React.FC = () => {
               </div>
             )}
 
-            {/* Botón de compartir */}
             <Button
               variant="outline"
               size="sm"
               onClick={handleShare}
-              className="mt-2 border-gray-700 hover:bg-gray-800"
+              className="border-gray-700 hover:bg-gray-800"
             >
               <Share2 className="mr-1 h-4 w-4" />
               Share

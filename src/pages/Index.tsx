@@ -51,38 +51,35 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
+    <div className="h-screen flex flex-col bg-black text-white overflow-hidden">
       <Header />
 
-      <main className="flex-1 px-4 sm:px-6 md:px-12 lg:px-24 pt-24 sm:pt-32 pb-12 flex flex-col items-center justify-center">
-        <div className="w-full max-w-6xl flex flex-col items-center justify-center space-y-16">
-          
-          {/* Haiku Display */}
-          <div className="w-full flex justify-center">
-            <HaikuDisplay
-              text={haiku.text}
-              author={haiku.author}
-              season={haiku.season}
-              year={haiku.year}
-              image={haiku.image}
-              keywords={haiku.keywords}
-            />
-          </div>
+      <main className="flex-1 flex flex-col pt-16 md:pt-20 px-4 sm:px-6 lg:px-8">
+        {/* Haiku Display */}
+        <div className="flex-1 flex items-center justify-center">
+          <HaikuDisplay
+            text={haiku.text}
+            author={haiku.author}
+            season={haiku.season}
+            year={haiku.year}
+            image={haiku.image}
+            keywords={haiku.keywords}
+          />
+        </div>
 
-          {/* Support Button */}
-          <div className="flex flex-col items-center">
-            <a
-              href="https://buymeacoffee.com/tomasmorales"
-              target="_blank"
-              className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
-            >
-              Support the project
-            </a>
+        {/* Support CTA */}
+        <div className="mb-6 flex flex-col items-center">
+          <a
+            href="https://buymeacoffee.com/tomasmorales"
+            target="_blank"
+            className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
+          >
+            Support the project
+          </a>
 
-            <p className="text-sm mt-4 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
-              If one of these haikus moved you,<br />consider supporting the project here.
-            </p>
-          </div>
+          <p className="text-sm mt-2 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
+            If one of these haikus moved you, consider supporting the project here.
+          </p>
         </div>
       </main>
     </div>

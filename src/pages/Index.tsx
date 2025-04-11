@@ -53,40 +53,40 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
-      <main className="flex-1 flex flex-col justify-center items-center px-4 sm:px-6 md:px-12 lg:px-24">
-  <div className="w-full max-w-2xl flex flex-col items-center space-y-6">
 
-    {/* Haiku */}
-    <div className="flex flex-col items-center w-full">
-      <HaikuDisplay 
-        text={haiku.text}
-        author={haiku.author}
-        season={haiku.season}
-        year={haiku.year}
-        image={haiku.image}
-        keywords={haiku.keywords}
-      />
-    </div>
+      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24">
+        <div className="w-full max-w-4xl h-[90vh] flex flex-col items-center justify-center overflow-hidden">
+          
+          <div className="flex flex-col items-center justify-center overflow-y-auto max-h-full space-y-10 p-4 sm:p-6">
 
-    {/* CTA */}
-    <div className="flex flex-col items-center">
-      <a
-        href="https://buymeacoffee.com/tomasmorales"
-        target="_blank"
-        className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
-      >
-        Support the project
-      </a>
-      <p className="text-sm mt-4 text-gray-500 text-center leading-relaxed max-w-xs">
-        If one of these haikus moved you,<br />consider supporting the project here.
-      </p>
-    </div>
+            {/* Haiku Display */}
+            <HaikuDisplay 
+              text={haiku.text}
+              author={haiku.author}
+              season={haiku.season}
+              year={haiku.year}
+              image={haiku.image}
+              keywords={haiku.keywords}
+            />
 
-  </div>
-</main>
+            {/* CTA */}
+            <div className="flex flex-col items-center">
+              <a
+                href="https://buymeacoffee.com/tomasmorales"
+                target="_blank"
+                className="inline-block border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors"
+              >
+                Support the project
+              </a>
+              <p className="text-sm mt-3 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
+                If one of these haikus moved you,<br />consider supporting the project here.
+              </p>
+            </div>
 
+          </div>
 
-
+        </div>
+      </main>
     </div>
   );
 };

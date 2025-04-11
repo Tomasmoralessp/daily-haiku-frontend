@@ -53,9 +53,9 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
-      <main className="min-h-[calc(100vh-6rem)] flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 text-white">
-  <div className="flex flex-col items-center space-y-10 w-full max-w-6xl">
-    
+      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 bg-black text-white">
+  <div className="w-full max-w-6xl flex flex-col items-center space-y-12 pt-20">
+
     {/* Haiku Display */}
     <div className="w-full flex justify-center">
       <HaikuDisplay 
@@ -84,6 +84,7 @@ const Index: React.FC = () => {
 
   </div>
 </main>
+
 
     </div>
   );

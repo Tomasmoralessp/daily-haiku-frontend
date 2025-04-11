@@ -53,11 +53,11 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
-      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 bg-black text-white">
-  <div className="w-full max-w-6xl flex flex-col items-center space-y-12 pt-20">
+      <main className="flex-1 flex flex-col justify-center items-center px-4 sm:px-6 md:px-12 lg:px-24">
+  <div className="w-full max-w-2xl flex flex-col items-center space-y-6">
 
-    {/* Haiku Display */}
-    <div className="w-full flex justify-center">
+    {/* Haiku */}
+    <div className="flex flex-col items-center w-full">
       <HaikuDisplay 
         text={haiku.text}
         author={haiku.author}
@@ -77,13 +77,14 @@ const Index: React.FC = () => {
       >
         Support the project
       </a>
-      <p className="text-sm mt-3 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
+      <p className="text-sm mt-4 text-gray-500 text-center leading-relaxed max-w-xs">
         If one of these haikus moved you,<br />consider supporting the project here.
       </p>
     </div>
 
   </div>
 </main>
+
 
 
     </div>

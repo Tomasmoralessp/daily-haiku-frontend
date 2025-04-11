@@ -53,21 +53,20 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
-
-      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24">
-        <div className="w-full max-w-4xl h-[90vh] flex flex-col items-center justify-center overflow-hidden">
-          
-          <div className="flex flex-col items-center justify-center overflow-y-auto max-h-full space-y-10 p-4 sm:p-6">
+      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 bg-black text-white">
+          <div className="w-full max-w-6xl flex flex-col items-center space-y-12 pt-20">
 
             {/* Haiku Display */}
-            <HaikuDisplay 
-              text={haiku.text}
-              author={haiku.author}
-              season={haiku.season}
-              year={haiku.year}
-              image={haiku.image}
-              keywords={haiku.keywords}
-            />
+            <div className="w-full flex justify-center">
+              <HaikuDisplay 
+                text={haiku.text}
+                author={haiku.author}
+                season={haiku.season}
+                year={haiku.year}
+                image={haiku.image}
+                keywords={haiku.keywords}
+              />
+            </div>
 
             {/* CTA */}
             <div className="flex flex-col items-center">
@@ -84,9 +83,9 @@ const Index: React.FC = () => {
             </div>
 
           </div>
+        </main>
 
-        </div>
-      </main>
+
     </div>
   );
 };

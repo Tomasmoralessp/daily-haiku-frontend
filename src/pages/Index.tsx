@@ -54,7 +54,8 @@ const Index: React.FC = () => {
     <div className="min-h-screen bg-black text-white flex flex-col">
       <Header />
       
-      <main className="flex-1 px-4 sm:px-6 md:px-12 lg:px-24 pt-48 sm:pt-64 pb-20 flex flex-col items-center justify-center">
+      <main className="flex-1 px-4 sm:px-6 md:px-12 lg:px-24 pt-24 sm:pt-32 md:pt-40 pb-20 flex flex-col items-center justify-center">
+
           <div className="w-full max-w-6xl flex flex-col items-center justify-center space-y-16">
             
             {/* Contenido principal del Haiku */}

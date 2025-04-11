@@ -39,7 +39,7 @@ const HaikuDisplay: React.FC = () => {
 
   const handleShare = () => {
     const today = new Date().toISOString().split("T")[0];
-    const shareUrl = `https://dailyhaiku.app/haiku/${today}`; // LA QUE TIENE OG TAGS
+    const shareUrl = `https://daily-haiku-backend-production.up.railway.app/haiku/${today}`; // LA QUE TIENE OG TAGS
   
     const message = `🌸 Check today's haiku (${today}) – timeless poetry from Bashō and beyond.`;
   

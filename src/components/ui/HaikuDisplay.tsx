@@ -101,13 +101,12 @@ const HaikuDisplay: React.FC = () => {
       <div className="md:hidden flex flex-col space-y-6">
         {/* Haiku Image primero en móvil */}
         <div className="px-4">
-          <div className="relative w-full aspect-square max-h-60 rounded-2xl overflow-hidden">
+          <div className="relative w-full rounded-2xl overflow-hidden">
             <img
               src={data.image_url}
               alt="Imagen del haiku"
-              className="w-full h-full object-cover rounded-2xl shadow-lg"
+              className="w-full h-auto rounded-2xl shadow-lg object-contain"
             />
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent to-black/10 pointer-events-none" />
           </div>
         </div>
         

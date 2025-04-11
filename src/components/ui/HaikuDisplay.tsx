@@ -39,23 +39,24 @@ const HaikuDisplay: React.FC = () => {
 
   const handleShare = () => {
     const today = new Date().toISOString().split("T")[0];
-    const shareUrl = `https://daily-haiku-backend-production.up.railway.app/haiku/${today}`;
+    const shareUrl = `https://dailyhaiku.app/haiku/${today}`; // LA QUE TIENE OG TAGS
   
-    const text = `Check today's haiku (${today}) on Daily Haiku 🌸`;
+    const message = `🌸 Check today's haiku (${today}) – timeless poetry from Bashō and beyond.`;
   
     if (navigator.share) {
       navigator
         .share({
-          title: "🌸 Daily Haiku",
-          text,
+          title: "Daily Haiku",
+          text: message,
           url: shareUrl,
         })
         .catch((err) => console.error("Error sharing:", err));
     } else {
-      navigator.clipboard.writeText(`${text} → ${shareUrl}`);
+      navigator.clipboard.writeText(`${message} ${shareUrl}`);
       alert("Link copied to clipboard!");
     }
   };
+  
   
 
   const handleSupportClick = () => {

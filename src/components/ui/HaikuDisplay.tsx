@@ -104,7 +104,7 @@ const HaikuDisplay: React.FC = () => {
             <img
               src={data.image_url} 
               alt="Imagen del haiku"
-              className="w-full h-full object-cover rounded-2xl shadow-lg"
+              className="w-full h-[180px] sm:h-80 md:h-96 object-cover rounded-2xl shadow-lg"
               style={{ objectPosition: "center" }}
             />
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent to-black/10 pointer-events-none" />

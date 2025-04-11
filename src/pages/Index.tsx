@@ -51,14 +51,15 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Header />
-      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 min-h-[100dvh] bg-black text-white">
-        <div className="w-full max-w-6xl flex flex-col items-center space-y-8 sm:space-y-12 pt-24 sm:pt-28 pb-10 sm:pb-16">
 
-          {/* Haiku */}
+      <main className="flex-1 px-4 sm:px-6 md:px-12 lg:px-24 pt-24 sm:pt-32 pb-12 flex flex-col items-center justify-center">
+        <div className="w-full max-w-6xl flex flex-col items-center justify-center space-y-16">
+          
+          {/* Haiku Display */}
           <div className="w-full flex justify-center">
-            <HaikuDisplay 
+            <HaikuDisplay
               text={haiku.text}
               author={haiku.author}
               season={haiku.season}
@@ -68,7 +69,7 @@ const Index: React.FC = () => {
             />
           </div>
 
-          {/* CTA */}
+          {/* Support Button */}
           <div className="flex flex-col items-center">
             <a
               href="https://buymeacoffee.com/tomasmorales"
@@ -77,7 +78,8 @@ const Index: React.FC = () => {
             >
               Support the project
             </a>
-            <p className="text-sm mt-3 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
+
+            <p className="text-sm mt-4 text-gray-500 text-center leading-relaxed max-w-xs sm:max-w-sm">
               If one of these haikus moved you,<br />consider supporting the project here.
             </p>
           </div>

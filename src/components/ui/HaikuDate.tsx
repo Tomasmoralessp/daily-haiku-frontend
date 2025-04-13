@@ -25,7 +25,7 @@ const HaikuDate: React.FC = () => {
   const { date } = useParams(); 
 
 useEffect(() => {
-  fetch(`${import.meta.env.VITE_API_URL}/haiku/${date}`)
+  fetch(`${import.meta.env.VITE_API_URL}/api/haiku/${date}`)
     .then((response) => {
       if (!response.ok) throw new Error("Error al obtener el haiku");
       return response.json();
@@ -42,7 +42,7 @@ useEffect(() => {
 }, [date]);
 
 const handleShare = () => {
-  const shareUrl = `https://dailyhaiku.app/api/haiku/${date}`;
+  const shareUrl = `https://dailyhaiku.app/haiku/${date}`;
   const message = `🌸 Discover the haiku from ${date} — timeless poetry from Bashō and beyond.`;
 
   if (navigator.share) {

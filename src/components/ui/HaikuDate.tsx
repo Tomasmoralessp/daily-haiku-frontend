@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./button";
 import { Share2, Heart } from "lucide-react";
+import { useParams } from "react-router-dom";
 import { toast } from "sonner";
+
 
 interface Haiku {
   id: number;
@@ -15,52 +17,51 @@ interface Haiku {
   image_url: string;
 }
 
-const HaikuDisplay: React.FC = () => {
+const HaikuDate: React.FC = () => {
   const [data, setData] = useState<Haiku | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isHeartAnimating, setIsHeartAnimating] = useState(false);
+  const { date } = useParams(); 
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/daily_haiku`)
-      .then((response) => {
-        if (!response.ok) throw new Error("Error al obtener el haiku");
-        return response.json();
+useEffect(() => {
+  fetch(`${import.meta.env.VITE_API_URL}/haiku/${date}`)
+    .then((response) => {
+      if (!response.ok) throw new Error("Error al obtener el haiku");
+      return response.json();
+    })
+    .then((data) => {
+      setData(data);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error(error);
+      setError(error.message);
+      setLoading(false);
+    });
+}, [date]);
+
+const handleShare = () => {
+  const shareUrl = `https://dailyhaiku.app/haiku/${date}`;
+  const message = `🌸 Discover the haiku from ${date} — timeless poetry from Bashō and beyond.`;
+
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "Daily Haiku",
+        text: message,
+        url: shareUrl,
       })
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setError(error.message);
-        setLoading(false);
+      .catch((err) => {
+        console.error("Error sharing:", err);
+        toast.error("Error sharing the haiku");
       });
-  }, []);
+  } else {
+    navigator.clipboard.writeText(`${message} ${shareUrl}`);
+    toast.success("Link copied to clipboard!");
+  }
+};
 
-  const handleShare = () => {
-    const today = new Date().toISOString().split("T")[0];
-    const shareUrl = `https://daily-haiku.app/haiku/${today}`;
-    const message = `🌸 Check today's haiku (${today}) — timeless poetry from Bashō and beyond.`;
-  
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "Daily Haiku",
-          text: message,
-          url: shareUrl,
-        })
-        .catch((err) => {
-          console.error("Error sharing:", err);
-          toast.error("Error sharing the haiku.");
-        });
-    } else {
-      navigator.clipboard.writeText(`${message} ${shareUrl}`);
-      toast.success("Link copied to clipboard!");
-    }
-  };
-  
-  
 
   const handleSupportClick = () => {
     setIsHeartAnimating(true);
@@ -105,6 +106,9 @@ const HaikuDisplay: React.FC = () => {
 
   return (
     <div className="w-full max-w-5xl mx-auto">
+      <h2 className="text-center text-lg text-gray-400 mt-4 mb-2">
+      Haiku for <span className="text-white font-semibold">{date}</span>
+    </h2>
       {/* Mobile layout */}
       <div className="md:hidden flex flex-col space-y-6">
         {/* Haiku Image primero en móvil */}

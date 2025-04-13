@@ -14,7 +14,7 @@ const HistoryPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/haiku/history`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/haiku/history`)
       .then((res) => res.json())
       .then((data) => {
         setHaikus(data);

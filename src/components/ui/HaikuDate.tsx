@@ -253,4 +253,4 @@ const handleShare = () => {
   );
 };
 
-export default HaikuDisplay;
+export default HaikuDate;

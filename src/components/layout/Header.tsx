@@ -18,6 +18,7 @@ const Header: React.FC = () => {
       <Link to="/" className="font-playfair text-xl tracking-wider text-white">
         DailyHaiku 🌸
       </Link>
+    <div className="flex items-center space-x-5">
       <Link
         to="/history"
         className="text-sm text-gray-300 hover:text-pink-300 transition font-medium"
@@ -30,6 +31,9 @@ const Header: React.FC = () => {
       >
         About the project
       </Link>
+
+      </div>
+      
       
     </header>
   );

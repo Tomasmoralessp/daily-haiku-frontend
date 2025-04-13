@@ -19,11 +19,18 @@ const Header: React.FC = () => {
         DailyHaiku 🌸
       </Link>
       <Link
+        to="/history"
+        className="text-sm text-gray-300 hover:text-pink-300 transition font-medium"
+      >
+        History
+      </Link>
+      <Link
         to="/about"
         className="text-sm text-gray-300 hover:text-pink-300 transition font-medium"
       >
         About the project
       </Link>
+      
     </header>
   );
 };

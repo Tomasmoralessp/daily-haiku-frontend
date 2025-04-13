@@ -1,0 +1,15 @@
+{
+  "name": "Daily Haiku",
+  "short_name": "Haiku",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

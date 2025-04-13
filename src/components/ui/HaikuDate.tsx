@@ -42,7 +42,7 @@ useEffect(() => {
 }, [date]);
 
 const handleShare = () => {
-  const shareUrl = `https://dailyhaiku.app/haiku/${date}`;
+  const shareUrl = `https://dailyhaiku.app/api/haiku/${date}`;
   const message = `🌸 Discover the haiku from ${date} — timeless poetry from Bashō and beyond.`;
 
   if (navigator.share) {

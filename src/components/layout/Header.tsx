@@ -15,8 +15,9 @@ const Header: React.FC = () => {
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-5 flex justify-between items-center backdrop-blur-lg bg-black/70 border-b border-white/5">
-      <Link to="/" className="font-playfair text-xl tracking-wider text-white">
-        DailyHaiku 🌸
+      <Link to="/" className="flex items-center font-playfair text-xl tracking-wider text-white">
+        <img src="/favicon.ico" alt="Logo" className="w-6 h-6 mr-2" />
+        DailyHaiku
       </Link>
     <div className="flex items-center space-x-5">
       <Link
